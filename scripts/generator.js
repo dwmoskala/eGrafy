@@ -4,6 +4,10 @@ var edgesRange = document.getElementById("edgesRange");
 var edgesValue = document.getElementById("edgesValue");
 var s = new sigma('container');
 
+s.settings({
+    sideMargin: 0.3
+});
+
 function ShowValuesFromSliders() {
     verticesValue.innerHTML = verticesRange.value;
     edgesValue.innerHTML = edgesRange.value;
@@ -57,21 +61,23 @@ function GenerateEdges() {
     }
 }
 
-function GenerateDefaultGraph() {
-    s.settings({
-        sideMargin: 0.3
-    });
-    GenerateVertices();
-    GenerateEdges();
-    s.refresh();
+function ShowVertexDegree() {
+    var nodes = s.graph.nodes();
+    
+    for (var i = 0, nodesLength = nodes.length; i < nodesLength; i++) {
+        var id = `n${i}`;
+
+        nodes[i].label += ` (${s.graph.degree(id)})`;
+    }
 }
 
-$('.generateGraphButton').on('click', function () {
+function GenerateGraph() {
     s.graph.clear();
     GenerateVertices();
     GenerateEdges();
+    ShowVertexDegree();
     s.refresh();
-})
+}
 
 function ColoringVertex() {
     var nodes = s.graph.nodes();
@@ -108,6 +114,10 @@ function ColoringVertex() {
     }
 }
 
+$('.generateGraphButton').on('click', function () {
+    GenerateGraph();
+})
+
 $('.useAlgorithmButton').on('click', function () {
     var chosenAlgorithm = Array.from(document.getElementsByName("algorithm")).find(r => r.checked).value;
 
@@ -119,4 +129,4 @@ $('.useAlgorithmButton').on('click', function () {
 })
 
 ShowValuesFromSliders();
-GenerateDefaultGraph();
+GenerateGraph();
