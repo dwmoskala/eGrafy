@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <title>Przeszukiwanie w głąb | eGrafy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Przeszukiwanie w głąb - krok po kroku">
+    <meta name="keywords" content="graf, grafy, teoria grafów, teoria grafow, algorytm w głąb, algorytm w glab">
+    <meta name="author" content="Damian Moskała">
+    <link rel="stylesheet" href="../styles/menu.css">
+    <link rel="stylesheet" href="../styles/algorithms.css">
+    <link rel="icon" href="../images/favicon.png">
+</head>
+
+<body>
+    <nav>
+        <div class="round">
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="menu-word">Menu</div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="../index.html">Strona główna</a></li>
+                <li class="has-children">Biografie<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="../biographies/leonhard_euler.html">Leonhard Euler</a></li>
+                        <li><a href="../biographies/william_hamilton.html">William Hamilton</a></li>
+                        <li><a href="../biographies/gustav_kirchhoff.html">Gustav Kirchhoff</a></li>
+                        <li><a href="../biographies/arthur_cayley.html">Artur Cayley</a></li>
+                        <li><a href="../biographies/otakar_boruvka.html">Otakar Borůvka</a></li>
+                        <li><a href="../biographies/edsger_dijkstra.html">Edsger Dijkstra</a></li>
+                        <li><a href="../biographies/lung_wen_tsai.html">Lung-Wen Tsai</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">Algorytmy<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="searching_deep.html">Przeszukiwanie w głąb</a></li>
+                        <li><a href="searching_across.html">Przeszukiwanie wszerz</a></li>
+                        <li><a href="fleury_algorithm.html">Algorytm Fleury'ego</a></li>
+                        <li><a href="dijkstra_algorithm.html">Algorytm Dijkstry</a></li>
+                        <li><a href="kruskal_algorithm.html">Algorytm Kruskala</a></li>
+                        <li><a href="ford_fulkerson_algorithm.html">Algorytm Forda-Fulkersona</a></li>
+                        <li><a href="vertex_coloring.html">Kolorowanie wierzchołków</a></li>
+                    </ul>
+                </li>
+                <li><a href="../generator.html">Generator</a></li>
+                <li><a href="../dictionary.html">Słownik</a></li>
+                <li><a href="../about.html">O mnie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Algorytm przeszukiwania w głąb</h1>
+        </header>
+        <article>
+            <input id="tab-1" type="radio" name="tabs" checked>
+            <label for="tab-1">Opis</label>
+            <input id="tab-2" type="radio" name="tabs">
+            <label for="tab-2">Krok 1</label>
+            <input id="tab-3" type="radio" name="tabs">
+            <label for="tab-3">Krok 2</label>
+            <input id="tab-4" type="radio" name="tabs">
+            <label for="tab-4">Krok 3</label>
+            <section id="content-1">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/searching_deep/1.JPG" alt="Graf 1" title="Graf 1">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Algorytm przeszukiwania w głąb nazywany jest również algorytmem przejścia (ang.
+                            <i>DFS - Depth First Search</i>). Zasada jego działania polega na przechodzeniu przez
+                            kolejne wierzchołki grafu skierowanego. Zastosowanie omawianego algorytmu daje pewność, że
+                            żaden wierzchołek w grafie nie zostanie pominięty. Największym problemem podczas użycia
+                            podstawowej wersji algorytmu to możliwość zapętlenia się. Taka trudność występuje w
+                            przypadkach, kiedy graf posiada cykle. Rozwiązaniem tego problemu może być opisanie każdego
+                            wierzchołka dodatkową informacją. Będzie ona określała, czy dany wierzchołek został
+                            odwiedzony. Na ilustracji został przedstawiony graf, który zostanie poddany działaniu
+                            algorytmu.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-2">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/searching_deep/2.JPG" alt="Graf 2" title="Graf 2">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Graf, który zostanie poddany algorytmowi przeszukiwania w głąb, posiada 5 wierzchołków, a
+                            wszystkie krawędzie łączące te węzły są skierowane. Wierzchołki zostały ponumerowane losowo.
+                            Wybieramy wierzchołek V<sub>0</sub>, ponieważ nie prowadzi do niego żadna krawędź. Następnie
+                            szukamy wierzchołka, do którego możemy się dostać poprzez krawędź z naszego wierzchołka.
+                            Niech będzie to V<sub>1</sub> (mamy do wyboru również V<sub>5</sub>). Wierzchołek
+                            V<sub>0</sub> oznaczamy jako <span style="color:green; font-weight: 700">odwiedzony</span>,
+                            a wierzchołek V<sub>1</sub> oznaczamy jako właśnie <span
+                                style="color: red; font-weight: 700">odwiedzany</span>.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-3">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/searching_deep/3.JPG" alt="Graf 3" title="Graf 3">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Wierzchołek V<sub>1</sub> nie posiada żadnych sąsiadów (krawędzie skierowane nie pozwalają na
+                            ruch do innych wierzchołków). Algorytm zakłada wtedy cofnięcie się do poprzednio
+                            odwiedzanego
+                            wierzchołka, czyli V<sub>0</sub>. Wierzchołek ten posiada nieodwiedzonego sąsiada
+                            V<sub>5</sub>, do którego właśnie przejdziemy. Powtarzamy tę operację i w ten sposób
+                            odwiedzamy kolejno wierzchołki: V<sub>2</sub>, V<sub>3</sub> i V<sub>4</sub>. W przypadku
+                            wierzchołka V<sub>2</sub> przechodzimy na wierzchołek V<sub>3</sub>, ponieważ drugi sąsiad —
+                            wierzchołek V<sub>1</sub> jest już <span
+                                style="color:green; font-weight: 700">odwiedzony</span>.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-4">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/searching_deep/4.JPG" alt="Graf 4" title="Graf 4">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>V<sub>4</sub> jest ostatnim wierzchołkiem omawianego grafu skierowanego, zatem działanie
+                            algorytmu można uznać za zakończone. Wszystkie wierzchołki zostały oznaczone jako
+                            <span style="color:green; font-weight: 700">odwiedzone</span>, a trasa algorytmu jest
+                            oznaczona <span style="color:green; font-weight: 700">strzałkami</span>. Przykładowe
+                            zastosowanie: sprawdzenie, czy punktu startowego do docelowego prowadzi jakaś ścieżka.</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="../scripts/menu.js"></script>
+</body>
+
+</html>

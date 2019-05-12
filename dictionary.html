@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <title>Słownik | eGrafy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Słownik pojęć dotyczących teorii grafów">
+    <meta name="keywords" content="graf, grafy, teoria grafów, teoria grafow, egrafy">
+    <meta name="author" content="Damian Moskała">
+    <link rel="stylesheet" href="./styles/menu.css">
+    <link rel="stylesheet" href="./styles/dictionary.css">
+    <link rel="icon" href="./images/favicon.png">
+</head>
+
+<body>
+    <nav>
+        <div class="round">
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="menu-word">Menu</div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="index.html">Strona główna</a></li>
+                <li class="has-children">Biografie<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="./biographies/leonhard_euler.html">Leonhard Euler</a></li>
+                        <li><a href="./biographies/william_hamilton.html">William Hamilton</a></li>
+                        <li><a href="./biographies/gustav_kirchhoff.html">Gustav Kirchhoff</a></li>
+                        <li><a href="./biographies/arthur_cayley.html">Artur Cayley</a></li>
+                        <li><a href="./biographies/otakar_boruvka.html">Otakar Borůvka</a></li>
+                        <li><a href="./biographies/edsger_dijkstra.html">Edsger Dijkstra</a></li>
+                        <li><a href="./biographies/lung_wen_tsai.html">Lung-Wen Tsai</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">Algorytmy<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="./algorithms/searching_deep.html">Przeszukiwanie w głąb</a></li>
+                        <li><a href="./algorithms/searching_across.html">Przeszukiwanie wszerz</a></li>
+                        <li><a href="./algorithms/fleury_algorithm.html">Algorytm Fleury'ego</a></li>
+                        <li><a href="./algorithms/dijkstra_algorithm.html">Algorytm Dijkstry</a></li>
+                        <li><a href="./algorithms/kruskal_algorithm.html">Algorytm Kruskala</a></li>
+                        <li><a href="./algorithms/ford_fulkerson_algorithm.html">Algorytm Forda-Fulkersona</a></li>
+                        <li><a href="./algorithms/vertex_coloring.html">Kolorowanie wierzchołków</a></li>
+                    </ul>
+                </li>
+                <li><a href="generator.html">Generator</a></li>
+                <li><a href="dictionary.html">Słownik</a></li>
+                <li><a href="about.html">O mnie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="grid-container">
+        <header class="grid-item">
+            <div class="inside-grid-container">
+                <div class="item-1">
+                    <img src="./images/favicon.png">
+                </div>
+                <div class="item-2">
+                    <h1>Słownik pojęć</h1>
+                </div>
+                <div class="item-3">
+                    <img src="./images/favicon.png">
+                </div>
+            </div>
+        </header>
+        <section class="grid-item">
+            <p><b>Teoria grafów</b> - dziedzina matematyki oraz informatyki, która zajmuje się badaniem właściwości
+                grafów.</p>
+
+            <p><b>Graf</b> - zbiór wierzchołków, które mogą być połączone za pomocą krawędzi. To podstawowa
+                struktura matematyczna w dziedzinie teorii grafów. Graf może posiadać takie właściwości jak
+                numeracja i wagi wierzchołków, czy skierowane krawędzie, które określają relacje w tej strukturze.</p>
+
+            <p><b>Wierzchołek</b> - punkt w przestrzeni, który jest elementem składowym grafu.</p>
+
+            <p><b>Krawędź</b> - para wierzchołków, które są połączone. W reprezentacji graficznej jest to
+                linia łącząca dwa wierzchołki.</p>
+
+            <p><b>Krawędź wielokrotna</b> - krawędź łącząca ze sobą dwa wierzchołki wielokrotnie.</p>
+
+            <p><b>Ścieżka</b> - ciąg krawędzi łączących różne wierzchołki (wyjątkiem jest cykl, gdzie wierzchołki są
+                równe).</p>
+
+            <p><b>Cykl</b> - ścieżka, która jest zamknięta. Oznacza to, że wierzchołek początkowy jest również końcowym.
+                Dodatkowo wierzchołek ten może być odwiedzony wielokrotnie.</p>
+
+            <p><b>Cykl Hamiltona</b> - cykl, w którym każdy wierzchołek poza początkowym jest odwiedzony
+                dokładnie raz.</p>
+
+            <p><b>Ścieżka Hamiltona</b> - ścieżka, w której każdy wierzchołek jest odwiedzony
+                dokładnie raz, ale wierzchołek początkowy i końcowy są różne.</p>
+
+            <p><b>Cykl Eulera</b> - cykl, w którym każda krawędź jest użyta dokładnie raz.</p>
+
+            <p><b>Ścieżka Eulera</b> - ścieżka, w której każda krawędź jest użyta dokładnie raz, ale wierzchołek
+                początkowy i końcowy są różne.</p>
+
+            <p><b>Graf prosty</b> - graf nie posiadający cykli i wielokrotnych krawędzi.</p>
+
+            <p><b>Graf pełny</b> - graf prosty, w którym każda para wiezrzchołków jest połączona.</p>
+
+            <p><b>Graf skierowany</b> - zwany również digrafem, to graf, który posiada skierowane
+                krawędzie. Ruch w takim grafie odbywa się tylko w kierunku wyznaczonym przez krawędzie.</p>
+
+            <p><b>Graf spójny</b> - graf, w którym każda para wierzchołków posiada ścieżkę łączącą je.</p>
+
+            <p><b>Graf planarny</b> - graf, który przedstawiony na danej płaszczyźnie nie posiada przecinających się
+                krawędzi.</p>
+
+            <p><b>Drzewo</b> - graf spójny nieskierowany i nieposiadający cykli.</p>
+
+            <p><b>Drzewo rozpinające</b> - drzewo zawierające wszystkie wierzchołki grafu, ale tylko niektóre z jego
+                krawędzi.</p>
+
+            <p><b>Podgraf</b> - graf powstały poprzez usunięcie danej liczby wierzchołków oraz krawędzi przylegających
+                do tych wierzchołków. Każdy graf jest również swoim podgrafem.</p>
+
+            <p><b>Klika</b> - podgraf, którego każde dwa wierzchołki są ze sobą połączone krawędzią.</p>
+
+            <p><b>Stopień wierzchołka</b> - suma wszystkich krawędzi podłączonych do danego wierzchołka, które mogą być
+                wychodzące i wchodzące do niego.</p>
+
+            <p><b>Stopień grafu</b> - liczba określająca maksymalny stopień wierzchołka w danym grafie.</p>
+
+            <p><b>Liczba chromatyczna</b> - wartość opisująca ile kolorów należy użyć, aby pokolorować graf w sposób
+                wierzchołkowy. Więcej informacji o kolorowaniu grafów znajduję się w sekcji algorytów.</p>
+            </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="./scripts/menu.js"></script>
+</body>
+
+</html>

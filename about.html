@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <title>O mnie | eGrafy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kontakt z autorem eGrafy">
+    <meta name="keywords" content="graf, grafy, teoria grafów, teoria grafow, egrafy">
+    <meta name="author" content="Damian Moskała">
+    <link rel="stylesheet" href="./styles/menu.css">
+    <link rel="stylesheet" href="./styles/about.css">
+    <link rel="icon" href="./images/favicon.png">
+</head>
+
+<body>
+    <nav>
+        <div class="round">
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="menu-word">Menu</div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="index.html">Strona główna</a></li>
+                <li class="has-children">Biografie<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="./biographies/leonhard_euler.html">Leonhard Euler</a></li>
+                        <li><a href="./biographies/william_hamilton.html">William Hamilton</a></li>
+                        <li><a href="./biographies/gustav_kirchhoff.html">Gustav Kirchhoff</a></li>
+                        <li><a href="./biographies/arthur_cayley.html">Artur Cayley</a></li>
+                        <li><a href="./biographies/otakar_boruvka.html">Otakar Borůvka</a></li>
+                        <li><a href="./biographies/edsger_dijkstra.html">Edsger Dijkstra</a></li>
+                        <li><a href="./biographies/lung_wen_tsai.html">Lung-Wen Tsai</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">Algorytmy<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="./algorithms/searching_deep.html">Przeszukiwanie w głąb</a></li>
+                        <li><a href="./algorithms/searching_across.html">Przeszukiwanie wszerz</a></li>
+                        <li><a href="./algorithms/fleury_algorithm.html">Algorytm Fleury'ego</a></li>
+                        <li><a href="./algorithms/dijkstra_algorithm.html">Algorytm Dijkstry</a></li>
+                        <li><a href="./algorithms/kruskal_algorithm.html">Algorytm Kruskala</a></li>
+                        <li><a href="./algorithms/ford_fulkerson_algorithm.html">Algorytm Forda-Fulkersona</a></li>
+                        <li><a href="./algorithms/vertex_coloring.html">Kolorowanie wierzchołków</a></li>
+                    </ul>
+                </li>
+                <li><a href="generator.html">Generator</a></li>
+                <li><a href="dictionary.html">Słownik</a></li>
+                <li><a href="about.html">O mnie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="grid-container">
+        <section class="grid-item item-1">
+            <h1>O projekcie</h1>
+            <div class="inside-grid-container">
+                <div class="logo">
+                    <img src="./images/favicon.png" alt="Logo eGrafy" title="Logo eGrafy">
+                </div>
+                <div class="description">
+                    <p>eGrafy to strona internetowa przedstawiająca życie i twórczość matematyków, którzy mieli
+                        największy wpływ na dziedzinę teorii grafów. Znajdują się tu również algorytmy grafowe,
+                        których działanie jest zaprezentowane krok po kroku. Najciekawszą częścią jest generator grafów
+                        realizujący wybrany algorytm w przejrzystej formie. Dzięki zastosowaniu biblioteki <a
+                            href="http://sigmajs.org" target="_blank" class="link">Sigma</a> wygenerowaną strukturę
+                        można dowolnie modyfikować. Dla tych, którzy nie znają poszczególnych pojęć z teorii grafów,
+                        przygotowany został słownik pojęć, w którym przedstawiono w skrócie najważniejsze definicje.
+                        Projekt jest częścią pracy inżynierskiej i powstał jako niezależnie funkcjonująca aplikacja
+                        internetowa.</p>
+                </div>
+            </div>
+        </section>
+        <section class="grid-item item-2">
+            <h1>O autorze</h1>
+            <p><b>Autor:</b> Damian Moskała</p>
+            <p><b>Projekty:</b> <a href="https://github.com/dwmoskala" target="_blank" class="link">Repozytorium GitHub</a></p>
+            <p><b>Kontakt:</b> <a href="mailto:dm049812@student.ath.edu.pl" target="_blank"
+                    class="link">dm049812@student.ath.edu.pl</a>
+            </p>
+        </section>
+        <section class="grid-item item-3">
+            <h1>O uczelni</h1>
+            <p></p><b>Nazwa:</b> Akademia Techniczno-Humanistyczna w Bielsku-Białej</p>
+            <p><b>Promotor:</b> Prof. ATH dr hab. inż. Stanisław Zawiślak</p>
+            <p><b>Kontakt:</b> <a href="mailto:szawislak@ath.bielsko.pl" target="_blank"
+                    class="link">szawislak@ath.bielsko.pl </a></p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2019 Damian Moskała</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="./scripts/menu.js"></script>
+</body>
+
+</html>

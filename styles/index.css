@@ -1,0 +1,131 @@
+body {
+    overflow: hidden;
+}
+
+.accordion ul {
+    display: table;
+    table-layout: fixed;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.accordion ul li {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-height: 25em;
+    text-align: center;
+    background: no-repeat center center;
+}
+
+.accordion ul li:nth-child(1) {
+    background-image: url("../images/index1.jpg");
+}
+
+.accordion ul li:nth-child(2) {
+    background-image: url("../images/index2.jpg");
+}
+
+.accordion ul li:nth-child(3) {
+    background-image: url("../images/index3.jpg");
+}
+
+.accordion ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.accordion ul li section {
+    transform: translateY(0);
+}
+
+.accordion ul li h2 {
+    font-size: 3em;
+}
+
+.accordion ul li p {
+    opacity: 1;
+    transition: opacity 500ms;
+    margin-left: 1em;
+    margin-right: 1em;
+    font-weight: 700;
+}
+
+.button {
+    position: relative;
+    top: 3em;
+    padding: 1em 3em;
+    text-decoration: none;
+    font-weight: 700;
+    color: black;
+    background-color: rgb(100, 200, 255);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+.button:hover {
+    background-color: rgb(0, 170, 255);
+}
+
+.button:active {
+    background-color: rgb(0, 100, 255);
+}
+
+@media only screen and (min-width: 768px) {
+    .accordion ul li {
+        display: table-cell;
+        vertical-align: bottom;
+        width: 33%;
+        height: 100vh;
+        transition: all 500ms ease;
+    }
+    .accordion ul:hover li {
+        width: 30%;
+    }
+    .accordion ul:hover li:hover {
+        width: 40%;
+    }
+    .accordion ul li::before {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.75) 80%);
+        opacity: 0;
+        transition: opacity 1000ms, transform 1000ms;
+    }
+    .accordion ul li:hover::before {
+        opacity: 1;
+    }
+    .accordion ul:hover li:hover * {
+        opacity: 1;
+        transition: opacity 500ms, transform 500ms;
+        transform: translateY(0);
+    }
+    .accordion ul li section {
+        transform: translateY(5em);
+        transition: transform 500ms;
+    }
+    .accordion ul li p {
+        margin-left: auto;
+        margin-right: auto;
+        width: 15em;
+        height: 10em;
+        opacity: 0;
+    }
+    .accordion ul li .button {
+        top: 1em;
+        opacity: 0;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .accordion ul li p {
+        width: 30em;
+    }
+    .accordion ul li .button {
+        top: -4em;
+        opacity: 0;
+    }
+}

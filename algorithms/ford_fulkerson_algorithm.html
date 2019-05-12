@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <title>Algorytm Forda-Fulkersona | eGrafy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Algorytm Forda-Fulkersona - krok po kroku">
+    <meta name="keywords" content="graf, grafy, teoria grafów, teoria grafow, algorytm forda-fulkersona">
+    <meta name="author" content="Damian Moskała">
+    <link rel="stylesheet" href="../styles/menu.css">
+    <link rel="stylesheet" href="../styles/algorithms.css">
+    <link rel="icon" href="../images/favicon.png">
+</head>
+
+<body>
+    <nav>
+        <div class="round">
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="menu-word">Menu</div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="../index.html">Strona główna</a></li>
+                <li class="has-children">Biografie<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="../biographies/leonhard_euler.html">Leonhard Euler</a></li>
+                        <li><a href="../biographies/william_hamilton.html">William Hamilton</a></li>
+                        <li><a href="../biographies/gustav_kirchhoff.html">Gustav Kirchhoff</a></li>
+                        <li><a href="../biographies/arthur_cayley.html">Artur Cayley</a></li>
+                        <li><a href="../biographies/otakar_boruvka.html">Otakar Borůvka</a></li>
+                        <li><a href="../biographies/edsger_dijkstra.html">Edsger Dijkstra</a></li>
+                        <li><a href="../biographies/lung_wen_tsai.html">Lung-Wen Tsai</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">Algorytmy<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="searching_deep.html">Przeszukiwanie w głąb</a></li>
+                        <li><a href="searching_across.html">Przeszukiwanie wszerz</a></li>
+                        <li><a href="fleury_algorithm.html">Algorytm Fleury'ego</a></li>
+                        <li><a href="dijkstra_algorithm.html">Algorytm Dijkstry</a></li>
+                        <li><a href="kruskal_algorithm.html">Algorytm Kruskala</a></li>
+                        <li><a href="ford_fulkerson_algorithm.html">Algorytm Forda-Fulkersona</a></li>
+                        <li><a href="vertex_coloring.html">Kolorowanie wierzchołków</a></li>
+                    </ul>
+                </li>
+                <li><a href="../generator.html">Generator</a></li>
+                <li><a href="../dictionary.html">Słownik</a></li>
+                <li><a href="../about.html">O mnie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Algorytm Forda-Fulkersona</h1>
+        </header>
+        <article>
+            <input id="tab-1" type="radio" name="tabs" checked>
+            <label for="tab-1">Opis</label>
+            <input id="tab-2" type="radio" name="tabs">
+            <label for="tab-2">Krok 1</label>
+            <input id="tab-3" type="radio" name="tabs">
+            <label for="tab-3">Krok 2</label>
+            <input id="tab-4" type="radio" name="tabs">
+            <label for="tab-4">Krok 3</label>
+            <section id="content-1">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/ford_fulkerson_algorithm/1.JPG" alt="Graf 1" title="Graf 1">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Algorytm Forda-Fulkersona ma za zadanie wyznaczyć maksymalny przepływ w sieci przepływowej.
+                            Sieć przepływowa to graf skierowany, którego krawędzie (nazywane kanałami) mają wartości
+                            (nazywane wielkościami przepływowymi) nieujemne. W takiej sieci należy wyznaczyć dwa główne
+                            wierzchołki będące źródłem i ujściem przepływu. Algorytm Forda-Fulkersona opiera się na
+                            wyznaczaniu sieci rezydualnych, które zastępują przepustowość kanałów, różnicą tej
+                            przepustowości i wartością przepływu, dla którego wyznaczamy przepustowość rezydualną. Na
+                            ilustracji został przedstawiony graf, który zostanie poddany działaniu algorytmu.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-2">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/ford_fulkerson_algorithm/2.JPG" alt="Graf 2" title="Graf 2">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Działanie algorytmu zaczynamy od wyznaczenia źródła i ujścia, którymi będą w tym przykładzie
+                            wierzchołki <span style="color:red; font-weight: 700">V<sub>0</sub></span> oraz <span
+                                style="color:green; font-weight: 700">V<sub>3</sub></span>. Następnie wyszukujemy
+                            połączenie między tymi wierzchołkami. Zacząć możemy od najkrótszej ścieżki, czyli takiej,
+                            która zawiera najmniej węzłów pośrednich. W tym wypadku będzie to trasa wiodąca przez
+                            wierzchołki V<sub>1</sub> i V<sub>2</sub>. Początkowy przepływ na danej ścieżce jest zerowy.
+                            Zostaje on zwiększony o najmniejszą wartość przepływu kanału na wybranej ścieżce. Dla
+                            wybranej trasy jest to wartość 6.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-3">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/ford_fulkerson_algorithm/3.JPG" alt="Graf 3" title="Graf 3">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Tworzymy kanały przeciwne do pierwotnych i nadajemy im wartość przepływu, którą wyznaczaliśmy
+                            w kroku poprzednim. Jednocześnie obliczamy wartości przepływu sieci rezydualnych, zastępując
+                            nimi pierwotne. W ten sposób wyznaczamy pozostałe kanały przeciwne, aż uzyskamy maksymalną
+                            przepustowość dla danej trasy.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-4">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/ford_fulkerson_algorithm/4.JPG" alt="Graf 4" title="Graf 4">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Przepustowości wszystkich kanałów zostały wyznaczone, a maksymalne wartości przepływu zostały
+                            porównane do wartości pierwotnych. Należy nadmienić, że dwa <span
+                                style="color:red; font-weight: 700">kanały</span> nie zostały wykorzystane. Ich stosunek
+                            przepływu wynosi kolejno 0:4 oraz 0:2, co oznacza, że możemy je usunąć z sieci przepływowej.
+                            Przykładowe zastosowanie: określenie przepustowości łączą internetowego.</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="../scripts/menu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+header, article {
+    margin: 1em;
+    padding: 1em;
+    background: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+section {
+    display: none;
+    border-top: 1px solid black;
+}
+
+input {
+    display: none;
+}
+
+label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 15px 25px;
+    border: 1px solid transparent;
+    font-size: 0;
+    color: gray;
+}
+
+label:before {
+    font-size: 16px;
+}
+
+label[for*='1']:before {
+    content: '1 ';
+}
+
+label[for*='2']:before {
+    content: '2 ';
+}
+
+label[for*='3']:before {
+    content: '3 ';
+}
+
+label[for*='4']:before {
+    content: '4 ';
+}
+
+label:hover {
+    color: black;
+    cursor: pointer;
+}
+
+input:checked+label {
+    color: black;
+    border: 1px solid black;
+    border-top: 5px solid black;
+    border-bottom: 1px solid white;
+}
+
+#tab-1:checked~#content-1, #tab-2:checked~#content-2, #tab-3:checked~#content-3, #tab-4:checked~#content-4 {
+    display: block;
+}
+
+.grid-container {
+    display: grid;
+    grid-gap: 1em;
+}
+
+.grid-item-1 {
+    grid-column: 1;
+    text-align: center;
+}
+
+.grid-item-2 {
+    grid-column: 1;
+}
+
+.grid-item-1 img {
+    width: 15em;
+}
+
+@media only screen and (min-width: 768px) {
+    header {
+        margin: 1em 5em;
+    }
+    article {
+        margin: auto 5em 1em 5em;
+    }
+    label {
+        font-size: 1em;
+    }
+    label[for*='1']:before, label[for*='2']:before, label[for*='3']:before, label[for*='4']:before {
+        content: '';
+    }
+    .grid-item-1 img {
+        width: 18em;
+    }
+    .grid-item-2 {
+        grid-column: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    header {
+        margin: 5em 10em 1em 10em;
+    }
+    article {
+        margin: auto 10em;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    header {
+        margin: 5em 20em 1em 20em;
+    }
+    article {
+        margin: auto 20em;
+    }
+    .grid-item-1 img {
+        height: 20em;
+    }
+}

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <title>Algorytm Fleury'ego | eGrafy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Algorytm Fleury'ego - krok po kroku">
+    <meta name="keywords" content="graf, grafy, teoria grafów, teoria grafow, algorytm fleury'ego, algorytm fleuryego">
+    <meta name="author" content="Damian Moskała">
+    <link rel="stylesheet" href="../styles/menu.css">
+    <link rel="stylesheet" href="../styles/algorithms.css">
+    <link rel="icon" href="../images/favicon.png">
+</head>
+
+<body>
+    <nav>
+        <div class="round">
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="menu-word">Menu</div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="../index.html">Strona główna</a></li>
+                <li class="has-children">Biografie<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="../biographies/leonhard_euler.html">Leonhard Euler</a></li>
+                        <li><a href="../biographies/william_hamilton.html">William Hamilton</a></li>
+                        <li><a href="../biographies/gustav_kirchhoff.html">Gustav Kirchhoff</a></li>
+                        <li><a href="../biographies/arthur_cayley.html">Artur Cayley</a></li>
+                        <li><a href="../biographies/otakar_boruvka.html">Otakar Borůvka</a></li>
+                        <li><a href="../biographies/edsger_dijkstra.html">Edsger Dijkstra</a></li>
+                        <li><a href="../biographies/lung_wen_tsai.html">Lung-Wen Tsai</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">Algorytmy<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="searching_deep.html">Przeszukiwanie w głąb</a></li>
+                        <li><a href="searching_across.html">Przeszukiwanie wszerz</a></li>
+                        <li><a href="fleury_algorithm.html">Algorytm Fleury'ego</a></li>
+                        <li><a href="dijkstra_algorithm.html">Algorytm Dijkstry</a></li>
+                        <li><a href="kruskal_algorithm.html">Algorytm Kruskala</a></li>
+                        <li><a href="ford_fulkerson_algorithm.html">Algorytm Forda-Fulkersona</a></li>
+                        <li><a href="vertex_coloring.html">Kolorowanie wierzchołków</a></li>
+                    </ul>
+                </li>
+                <li><a href="../generator.html">Generator</a></li>
+                <li><a href="../dictionary.html">Słownik</a></li>
+                <li><a href="../about.html">O mnie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Algorytm Fleury'ego</h1>
+        </header>
+        <article>
+            <input id="tab-1" type="radio" name="tabs" checked>
+            <label for="tab-1">Opis</label>
+            <input id="tab-2" type="radio" name="tabs">
+            <label for="tab-2">Krok 1</label>
+            <input id="tab-3" type="radio" name="tabs">
+            <label for="tab-3">Krok 2</label>
+            <input id="tab-4" type="radio" name="tabs">
+            <label for="tab-4">Krok 3</label>
+            <section id="content-1">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/fleury_algorithm/1.JPG" alt="Graf 1" title="Graf 1">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Algorytm Fleury'ego zalicza się do tych, których działanie ma wyznaczyć cykl lub ścieżkę
+                            Eulera w grafie. Warunkiem działania algorytmu jest spełnienie twierdzenia Eulera o
+                            parzystości stopni wierzchołków. Schemat algorytmu polega na poruszaniu się, w miarę
+                            możliwości, po krawędziach niebędącymi mostami. Mosty to krawędzie, które są jedyną
+                            krawędzią wychodzącą od danego wierzchołka, a tym samym niepozwalającą na powrót do niego.
+                            Na ilustracji został przedstawiony graf, który zostanie poddany analizie przez
+                            algorytm.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-2">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/fleury_algorithm/2.JPG" alt="Graf 2" title="Graf 2">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Działanie algorytmu wyszukiwania cyklu Eulera zaczyna się od wyznaczenia wierzchołka
+                            startowego, który będzie też końcowym. Następnie sprawdzamy krawędzie, które nie są mostami
+                            i wybieramy dowolną z nich. W tym przypadku będzie to krawędź prowadząca do wierzchołka
+                            V<sub>1</sub>.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-3">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/fleury_algorithm/3.JPG" alt="Graf 3" title="Graf 3">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Następnie powtarzamy krok przeszukiwania krawędzi, które nie są mostami. W przypadku, gdy
+                            jedyna dostępna krawędź jest mostem, przechodzimy przez nią na kolejny wierzchołek.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-4">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/fleury_algorithm/4.JPG" alt="Graf 4" title="Graf 4">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Powtarzając omówione kroki algorytmu Fleury'ego uzyskamy cykl Eulera w przedstawionym grafie.
+                            Kolejne krawędzie, którymi porusza się algorytm, zostały ponumerowane i pokolorowane na
+                            ilustracji. Jak widać, wszystkie krawędzie zostały odwiedzone jednorazowo, a algorytm ma
+                            początek i koniec w tym samym węźle. Należy zauważyć, że taka kolejność przechodzenia przez
+                            krawędzie nie jest jedyną możliwością.</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="../scripts/menu.js"></script>
+</body>
+
+</html>

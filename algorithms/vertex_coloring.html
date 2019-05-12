@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <title>Kolorowanie wierzchołków | eGrafy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kolorowanie wierzchołków - krok po kroku">
+    <meta name="keywords"
+        content="graf, grafy, teoria grafów, teoria grafow, kolorowanie wierzchołków, kolorowanie wierzcholkow">
+    <meta name="author" content="Damian Moskała">
+    <link rel="stylesheet" href="../styles/menu.css">
+    <link rel="stylesheet" href="../styles/algorithms.css">
+    <link rel="icon" href="../images/favicon.png">
+</head>
+
+<body>
+    <nav>
+        <div class="round">
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="menu-word">Menu</div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="../index.html">Strona główna</a></li>
+                <li class="has-children">Biografie<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="../biographies/leonhard_euler.html">Leonhard Euler</a></li>
+                        <li><a href="../biographies/william_hamilton.html">William Hamilton</a></li>
+                        <li><a href="../biographies/gustav_kirchhoff.html">Gustav Kirchhoff</a></li>
+                        <li><a href="../biographies/arthur_cayley.html">Artur Cayley</a></li>
+                        <li><a href="../biographies/otakar_boruvka.html">Otakar Borůvka</a></li>
+                        <li><a href="../biographies/edsger_dijkstra.html">Edsger Dijkstra</a></li>
+                        <li><a href="../biographies/lung_wen_tsai.html">Lung-Wen Tsai</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">Algorytmy<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="searching_deep.html">Przeszukiwanie w głąb</a></li>
+                        <li><a href="searching_across.html">Przeszukiwanie wszerz</a></li>
+                        <li><a href="fleury_algorithm.html">Algorytm Fleury'ego</a></li>
+                        <li><a href="dijkstra_algorithm.html">Algorytm Dijkstry</a></li>
+                        <li><a href="kruskal_algorithm.html">Algorytm Kruskala</a></li>
+                        <li><a href="ford_fulkerson_algorithm.html">Algorytm Forda-Fulkersona</a></li>
+                        <li><a href="vertex_coloring.html">Kolorowanie wierzchołków</a></li>
+                    </ul>
+                </li>
+                <li><a href="../generator.html">Generator</a></li>
+                <li><a href="../dictionary.html">Słownik</a></li>
+                <li><a href="../about.html">O mnie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Kolorowanie wierzchołków</h1>
+        </header>
+        <article>
+            <input id="tab-1" type="radio" name="tabs" checked>
+            <label for="tab-1">Opis</label>
+            <input id="tab-2" type="radio" name="tabs">
+            <label for="tab-2">Krok 1</label>
+            <input id="tab-3" type="radio" name="tabs">
+            <label for="tab-3">Krok 2</label>
+            <input id="tab-4" type="radio" name="tabs">
+            <label for="tab-4">Krok 3</label>
+            <section id="content-1">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/vertex_coloring/1.JPG" alt="Graf 1" title="Graf 1">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Algorytmy, których działanie opiera się na kolorowaniu wierzchołków grafu, jest kilka. Tutaj
+                            zostanie opisany jeden z najprostszych, czyli algorytm zachłannego kolorowania. Zasada jego
+                            działania polega na sprawdzaniu sąsiadów wierzchołka, który chcemy pokolorować i wyznaczeniu
+                            jak najmniejszej liczby kolorów potrzebnych do pokolorowania całego grafu. Taką wartość
+                            nazywamy liczbą chromatyczną. Na ilustracji został przedstawiony graf, który zostanie
+                            poddany działaniu algorytmu.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-2">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/vertex_coloring/2.JPG" alt="Graf 2" title="Graf 2">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Graf, który zostanie poddany algorytmowi zachłannego kolorowania, posiada 5 wierzchołków, a
+                            więc należy zarezerwować 5 kolorów, które będziemy mogli używać. Kolory te należy
+                            ponumerować. Zaczynamy od wybrania dowolnego wierzchołka, w tym wypadku będzie to
+                            V<sub>0</sub>. Malujemy go kolorem o najniższym numerze. Dla tego przykładu jest to <span
+                                style="color: red; font-weight: 700">czerwony</span>.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-3">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/vertex_coloring/3.JPG" alt="Graf 3" title="Graf 3">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Wierzchołek V<sub>0</sub> został pokolorowany, więc przechodzimy na następny, czyli
+                            V<sub>1</sub>. Sprawdzamy dla niego kolory użyte do pomalowania jego sąsiadów. Tutaj jest to
+                            tylko <span style="color: red; font-weight: 700">czerwony</span>. Wykreślamy ten kolor z
+                            puli i malujemy wierzchołek V<sub>1</sub> kolorem o najniższym numerze, czyli <span
+                                style="color: green; font-weight: 700">zielonym</span>. Po przejściu do kolejnego
+                            wierzchołka pulę dostępnych kolorów resetujemy, tak aby znów wszystkie był dostępne. Kroki
+                            te powtarzamy dla pozostałych wierzchołków.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-4">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/vertex_coloring/4.JPG" alt="Graf 4" title="Graf 4">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Na tym etapie wszystkie wierzchołki zostały pokolorowane. Żadna para węzłów sąsiadujących nie
+                            ma takiego samego koloru. Liczba użytych kolorów jest minimalna i wynosi 3. Liczba kolorów
+                            potrzebna do tego algorytmu wynosi tyle, ile jest wierzchołków, ponieważ dla przypadku, gdy
+                            wszystkie węzły będą ze sobą połączone, to liczba użytych kolorów będzie równa liczbie
+                            wierzchołków. Praktyczne działanie algorytmu zostało przedstawione w <a
+                                href="../generator.html" target="_blank" class="link">generatorze</a>. Przykładowe
+                            zastosowanie: wyznaczenie czasu potrzebnego na wykonanie zadań
+                            powiązanych ze sobą.</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="../scripts/menu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <title>Algorytm Kruskala | eGrafy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Algorytm Kruskala - krok po kroku">
+    <meta name="keywords" content="graf, grafy, teoria grafów, teoria grafow, algorytm kruskala">
+    <meta name="author" content="Damian Moskała">
+    <link rel="stylesheet" href="../styles/menu.css">
+    <link rel="stylesheet" href="../styles/algorithms.css">
+    <link rel="icon" href="../images/favicon.png">
+</head>
+
+<body>
+    <nav>
+        <div class="round">
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="menu-word">Menu</div>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="../index.html">Strona główna</a></li>
+                <li class="has-children">Biografie<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="../biographies/leonhard_euler.html">Leonhard Euler</a></li>
+                        <li><a href="../biographies/william_hamilton.html">William Hamilton</a></li>
+                        <li><a href="../biographies/gustav_kirchhoff.html">Gustav Kirchhoff</a></li>
+                        <li><a href="../biographies/arthur_cayley.html">Artur Cayley</a></li>
+                        <li><a href="../biographies/otakar_boruvka.html">Otakar Borůvka</a></li>
+                        <li><a href="../biographies/edsger_dijkstra.html">Edsger Dijkstra</a></li>
+                        <li><a href="../biographies/lung_wen_tsai.html">Lung-Wen Tsai</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">Algorytmy<span class="icon-arrow"></span>
+                    <ul class="children">
+                        <li><a href="searching_deep.html">Przeszukiwanie w głąb</a></li>
+                        <li><a href="searching_across.html">Przeszukiwanie wszerz</a></li>
+                        <li><a href="fleury_algorithm.html">Algorytm Fleury'ego</a></li>
+                        <li><a href="dijkstra_algorithm.html">Algorytm Dijkstry</a></li>
+                        <li><a href="kruskal_algorithm.html">Algorytm Kruskala</a></li>
+                        <li><a href="ford_fulkerson_algorithm.html">Algorytm Forda-Fulkersona</a></li>
+                        <li><a href="vertex_coloring.html">Kolorowanie wierzchołków</a></li>
+                    </ul>
+                </li>
+                <li><a href="../generator.html">Generator</a></li>
+                <li><a href="../dictionary.html">Słownik</a></li>
+                <li><a href="../about.html">O mnie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Algorytm Kruskala</h1>
+        </header>
+        <article>
+            <input id="tab-1" type="radio" name="tabs" checked>
+            <label for="tab-1">Opis</label>
+            <input id="tab-2" type="radio" name="tabs">
+            <label for="tab-2">Krok 1</label>
+            <input id="tab-3" type="radio" name="tabs">
+            <label for="tab-3">Krok 2</label>
+            <input id="tab-4" type="radio" name="tabs">
+            <label for="tab-4">Krok 3</label>
+            <section id="content-1">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/kruskal_algorithm/1.JPG" alt="Graf 1" title="Graf 1">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Algorytm Kruskala wyznacza minimalne drzewo rozpinające dla grafu spójnego nieskierowanego.
+                            Minimalne drzewo rozpinające to takie drzewo, którego suma wag krawędzi będzie najniższa z
+                            możliwych. Istnieje szansa, że w danym grafie będzie kilka takich drzew, wtedy wystarczy
+                            wybrać jedno z nich. Na ilustracji został przedstawiony graf, który zostanie poddany
+                            działaniu algorytmu.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-2">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/kruskal_algorithm/2.JPG" alt="Graf 2" title="Graf 2">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Algorytm zaczyna swoje działanie od wyszukania krawędzi o najniższej wadze. W tym przypadku
+                            jest to krawędź łącząca wierzchołki <span
+                                style="color:green; font-weight: 700">V<sub>0</sub></span> i <span
+                                style="color:green; font-weight: 700">V<sub>1</sub></span>, ponieważ ma ona wagę 1.
+                            Gdyby w grafie znalazły się dwie krawędzie o takiej samej wadze, algorytm wybiera pierwszą z
+                            nich. Należy jednak nadmienić, że gdyby krawędź po włączeniu do drzewa tworzyła cykl, nie
+                            zostanie ona dodana do niego.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-3">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/kruskal_algorithm/3.JPG" alt="Graf 3" title="Graf 3">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>W następnych krokach wyszukujemy krawędzie o coraz większych wagach, lecz niekoniecznie
+                            połączonych bezpośrednio z pierwszą wyszukaną krawędzią. Algorytm ostatecznie i tak połączy
+                            wszystkie krawędzie w drzewo.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="content-4">
+                <div class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="../images/kruskal_algorithm/4.JPG" alt="Graf 4" title="Graf 4">
+                    </div>
+                    <div class="grid-item-2">
+                        <p>Efekt działania algorytmu Kruskala widoczny jest na ilustracji. Wszystkie wierzchołki zostały
+                            wchłonięte do minimalnego drzewa rozpinającego. W powstałym w ten sposób grafie nie ma
+                            żadnych cyklów, a wybrane wagi krawędzi są najniższe z możliwych. Przykładowe zastosowanie:
+                            wyznaczenie natężenie prądu w danej sieci elektrycznej, znając topologię, opory oraz
+                            napięcie.</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="../scripts/menu.js"></script>
+</body>
+
+</html>
