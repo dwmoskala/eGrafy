@@ -5,7 +5,7 @@ var edgesValue = document.getElementById("edgesValue");
 var s = new sigma('container');
 
 s.settings({
-    sideMargin: 0.3
+    sideMargin: 0.5
 });
 
 function ShowValuesFromSliders() {
