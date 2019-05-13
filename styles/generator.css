@@ -1,7 +1,10 @@
-.grid-container {
-    margin: 1em;
+.grid-container, .inside-grid-container {
     display: grid;
     grid-gap: 1em;
+}
+
+.grid-container {
+    margin: 1em;
 }
 
 .grid-item-1, .grid-item-2, .grid-item-3 {
@@ -16,6 +19,24 @@
 
 .grid-item-3 {
     height: 18em;
+}
+
+.inside-item-1 {
+    grid-column: 1;
+}
+
+.inside-item-2 {
+    grid-column: 2;
+}
+
+.inside-item-3 {
+    grid-column: 3;
+    text-align: right;
+}
+
+.grid-item-1 img {
+    height: 0;
+    visibility: hidden;
 }
 
 .slider {
@@ -72,6 +93,10 @@
     .grid-item-3 {
         grid-column: 2 / span 2;
         height: 22em;
+    }
+    .grid-item-1 img {
+        height: 5em;
+        visibility: visible;
     }
 }
 
