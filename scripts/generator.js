@@ -80,6 +80,21 @@ function GenerateGraph() {
     s.refresh();
 }
 
+function GetNeighbors(nodes, edges, i) {
+    var neighbors = [];
+
+    for (var j = 0, edgesLength = edges.length; j < edgesLength; j++) {
+        if (edges[j].source == nodes[i].id) {
+            neighbors.push(nodes.find(x => x.id == edges[j].target));
+        }
+        if (edges[j].target == nodes[i].id) {
+            neighbors.push(nodes.find(x => x.id == edges[j].source));
+        }
+    }
+
+    return neighbors;
+}
+
 function ColoringVertex() {
     var nodes = s.graph.nodes();
     var edges = s.graph.edges();
@@ -87,17 +102,8 @@ function ColoringVertex() {
     var reservedColors = colors.slice(0, nodes.length);
 
     for (var i = 0, nodesLength = nodes.length; i < nodesLength; i++) {
-        var neighbors = [];
         var availableColors = reservedColors.slice();
-
-        for (var j = 0, edgesLength = edges.length; j < edgesLength; j++) {
-            if (edges[j].source == nodes[i].id) {
-                neighbors.push(nodes.find(x => x.id == edges[j].target));
-            }
-            if (edges[j].target == nodes[i].id) {
-                neighbors.push(nodes.find(x => x.id == edges[j].source));
-            }
-        }
+        var neighbors = GetNeighbors(nodes, edges, i);
 
         if (neighbors.length > 0) {
             for (var j = 0, neighborsLength = neighbors.length; j < neighborsLength; j++) {
