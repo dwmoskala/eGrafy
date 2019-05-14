@@ -55,15 +55,16 @@ function GenerateEdges() {
                     target: `n${j}`,
                     color: '#c8c8ff'
                 })
+
+                id++;
             }
-            id++;
         }
     }
 }
 
 function ShowVertexDegree() {
     var nodes = s.graph.nodes();
-    
+
     for (var i = 0, nodesLength = nodes.length; i < nodesLength; i++) {
         var id = `n${i}`;
 
