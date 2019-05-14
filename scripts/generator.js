@@ -5,7 +5,12 @@ var edgesValue = document.getElementById("edgesValue");
 var s = new sigma('container');
 
 s.settings({
-    sideMargin: 0.5
+    sideMargin: 0.3,
+    zoomingRatio: 1.25,
+    doubleClickZoomingRatio: 2,
+    font: "cabin",
+    defaultLabelSize: 12,
+    labelThreshold: 1
 });
 
 function ShowValuesFromSliders() {
