@@ -19,11 +19,11 @@ function ShowValuesFromSliders() {
 
     verticesRange.oninput = function () {
         verticesValue.innerHTML = this.value;
-    };
+    }
 
     edgesRange.oninput = function () {
         edgesValue.innerHTML = this.value;
-    };
+    }
 }
 
 function GenerateVertices() {
@@ -45,8 +45,8 @@ function GenerateVertices() {
 }
 
 function GenerateEdges() {
-    var chanceToCreateEdge = edgesRange.value;
     var vertices = s.graph.nodes();
+    var chanceToCreateEdge = edgesRange.value;
     var id = 0;
 
     for (var i = 0, length = vertices.length; i < length; i++) {
@@ -59,7 +59,7 @@ function GenerateEdges() {
                     source: `n${i}`,
                     target: `n${j}`,
                     color: '#c8c8ff'
-                })
+                });
 
                 id++;
             }
@@ -68,12 +68,11 @@ function GenerateEdges() {
 }
 
 function ShowVertexDegree() {
-    var nodes = s.graph.nodes();
+    var vertices = s.graph.nodes();
 
-    for (var i = 0, nodesLength = nodes.length; i < nodesLength; i++) {
+    for (var i = 0, verticesLength = vertices.length; i < verticesLength; i++) {
         var id = `n${i}`;
-
-        nodes[i].label += ` (${s.graph.degree(id)})`;
+        vertices[i].label += ` (${s.graph.degree(id)})`;
     }
 }
 
@@ -85,15 +84,17 @@ function GenerateGraph() {
     s.refresh();
 }
 
-function GetNeighbors(nodes, edges, i) {
+function GetNeighbors(i) {
+    var vertices = s.graph.nodes();
+    var edges = s.graph.edges();
     var neighbors = [];
 
     for (var j = 0, edgesLength = edges.length; j < edgesLength; j++) {
-        if (edges[j].source == nodes[i].id) {
-            neighbors.push(nodes.find(x => x.id == edges[j].target));
+        if (edges[j].source == vertices[i].id) {
+            neighbors.push(vertices.find(x => x.id == edges[j].target));
         }
-        if (edges[j].target == nodes[i].id) {
-            neighbors.push(nodes.find(x => x.id == edges[j].source));
+        if (edges[j].target == vertices[i].id) {
+            neighbors.push(vertices.find(x => x.id == edges[j].source));
         }
     }
 
@@ -101,14 +102,13 @@ function GetNeighbors(nodes, edges, i) {
 }
 
 function ColoringVertex() {
-    var nodes = s.graph.nodes();
-    var edges = s.graph.edges();
+    var vertices = s.graph.nodes();
     var colors = ['#ff0000', '#ffbf00', '#ffff00', '#00ff00', '#009933', '#00ffff', '#0000ff', '#ff00ff', '#996633', '#000000'];
-    var reservedColors = colors.slice(0, nodes.length);
+    var reservedColors = colors.slice(0, vertices.length);
 
-    for (var i = 0, nodesLength = nodes.length; i < nodesLength; i++) {
+    for (var i = 0, verticesLength = vertices.length; i < verticesLength; i++) {
         var availableColors = reservedColors.slice();
-        var neighbors = GetNeighbors(nodes, edges, i);
+        var neighbors = GetNeighbors(i);
 
         if (neighbors.length > 0) {
             for (var j = 0, neighborsLength = neighbors.length; j < neighborsLength; j++) {
@@ -126,6 +126,59 @@ function ColoringVertex() {
     }
 }
 
+function AddOrDeleteEdge(i, addEdge) {
+    var vertices = s.graph.nodes();
+    var edges = s.graph.edges();
+
+    for (var j = 0, verticesLength = vertices.length; j < verticesLength; j++) {
+        if (i == j) {
+            continue;
+        }
+        else if (s.graph.degree(`n${j}`) % 2 != 0 || s.graph.degree(`n${j}`) == 0) {
+            var edge = edges.find(x => (x.source == `n${i}` || x.source == `n${j}`) && (x.target == `n${i}` || x.target == `n${j}`));
+
+            if (addEdge && edge == null) {
+                s.graph.addEdge({
+                    id: `e${edges.length}`,
+                    source: `n${i}`,
+                    target: `n${j}`,
+                    color: '#c8c8ff'
+                });
+                edgeWasAdded = true;
+            }
+            else if (!addEdge && edge != null) {
+                s.graph.dropEdge(edge.id);
+            }
+            edges = s.graph.edges();
+        }
+    }
+}
+
+function GenerateEulerianGraph() {
+    var vertices = s.graph.nodes();
+    var addEdge = true;
+    var edgeWasAdded = false;
+
+    for (var k = 0, iterations = 10; k < iterations; k++) {
+        if (edgeWasAdded) {
+            addEdge = true;
+            iterations++;
+        }
+        edgeWasAdded = false;
+
+        for (var i = 0, verticesLength = vertices.length; i < verticesLength; i++) {
+            var neighbors = GetNeighbors(i);
+            var id = `n${i}`;
+
+            if (neighbors.length % 2 != 0 || neighbors.length == 0) {
+                AddOrDeleteEdge(i, addEdge, edgeWasAdded);
+            }
+            vertices[i].label = `V${i + 1} (${s.graph.degree(id)})`;
+        }
+        addEdge = false;
+    }
+}
+
 $('.generateGraphButton').on('click', function () {
     GenerateGraph();
 })
@@ -135,6 +188,9 @@ $('.useAlgorithmButton').on('click', function () {
 
     if (chosenAlgorithm == 'vertex_coloring') {
         ColoringVertex();
+    }
+    else if (chosenAlgorithm == 'generate_eulerian_graph') {
+        GenerateEulerianGraph();
     }
 
     s.refresh();

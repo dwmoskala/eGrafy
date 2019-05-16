@@ -77,7 +77,13 @@
                 <hr />
                 <p>Wybrany algorytm:</p>
                 <label>
-                    <input type="radio" name="algorithm" value="vertex_coloring" checked> Kolorowanie wierzchołków
+                    <input type="radio" name="algorithm" value="vertex_coloring" checked> Zachłanne kolorowanie
+                    wierzchołków
+                </label>
+                <br />
+                <label>
+                    <input type="radio" name="algorithm" value="generate_eulerian_graph"> Wyznaczanie grafu
+                    eulerowskiego
                 </label>
                 <hr />
                 <button type="button" name="generateGraph" class="generateGraphButton">Generuj graf</button>
@@ -91,6 +97,7 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"
         integrity="sha256-ii2D7w2jthCadZtIl2OjRn2vu1iEtGWcOrmd+UOZorc=" crossorigin="anonymous"></script>
+
     <script src="./scripts/menu.js"></script>
     <script src="./scripts/generator.js"></script>
 </body>
