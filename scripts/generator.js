@@ -3,6 +3,8 @@ var verticesValue = document.getElementById("verticesValue");
 var edgesRange = document.getElementById("edgesRange");
 var edgesValue = document.getElementById("edgesValue");
 var s = new sigma('container');
+var graphVertices = [];
+var graphEdges = [];
 
 s.settings({
     sideMargin: 0.3,
@@ -42,6 +44,8 @@ function GenerateVertices() {
                 color: '#0000fa'
             });
     }
+
+    graphVertices = s.graph.nodes();
 }
 
 function GenerateEdges() {
@@ -65,6 +69,8 @@ function GenerateEdges() {
             }
         }
     }
+
+    graphEdges = s.graph.edges();
 }
 
 function ShowVertexDegree() {
@@ -82,6 +88,37 @@ function GenerateGraph() {
     GenerateEdges();
     ShowVertexDegree();
     s.refresh();
+}
+
+function RegenerateVertices(graphVertices) {
+    for (var i = 0, graphVerticesLength = graphVertices.length; i < graphVerticesLength; i++) {
+        s.graph
+            .addNode({
+                id: graphVertices[i].id,
+                label: graphVertices[i].label,
+                x: graphVertices[i].x,
+                y: graphVertices[i].y,
+                size: 1,
+                color: '#0000fa'
+            });
+    }
+}
+
+function RegenerateEdges(graphEdges) {
+    for (var i = 0, graphEdgesLength = graphEdges.length; i < graphEdgesLength; i++) {
+        s.graph.addEdge({
+            id: graphEdges[i].id,
+            source: graphEdges[i].source,
+            target: graphEdges[i].target,
+            color: '#c8c8ff'
+        });
+    }
+}
+
+function RegenerateGraph() {
+    s.graph.clear();
+    RegenerateVertices(graphVertices);
+    RegenerateEdges(graphEdges);
 }
 
 function GetNeighbors(i) {
@@ -145,6 +182,7 @@ function GetNeighborEdges(i) {
 }
 
 function ColoringEdges() {
+    s.refresh();
     var edges = s.graph.edges();
     var colors = ['#ff0000', '#ffbf00', '#ffff00', '#00ff00', '#009933', '#00ffff', '#0000ff', '#ff00ff', '#996633', '#000000', '#800000', '#800080', '#808000', '#C0C0C0', '#008080'];
 
@@ -228,13 +266,15 @@ $('.generateGraphButton').on('click', function () {
 $('.useAlgorithmButton').on('click', function () {
     var chosenAlgorithm = Array.from(document.getElementsByName("algorithm")).find(r => r.checked).value;
 
+    RegenerateGraph();
+
     if (chosenAlgorithm == 'vertex_coloring') {
         ColoringVertex();
     }
     else if (chosenAlgorithm == 'edges_coloring') {
         ColoringEdges();
     }
-    else if (chosenAlgorithm == 'generate_eulerian_graph') {
+    else if (chosenAlgorithm == 'eulerian_graph') {
         GenerateEulerianGraph();
     }
 
