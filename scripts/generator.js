@@ -93,7 +93,7 @@ function GetNeighbors(i) {
         if (edges[j].source == vertices[i].id) {
             neighbors.push(vertices.find(x => x.id == edges[j].target));
         }
-        if (edges[j].target == vertices[i].id) {
+        else if (edges[j].target == vertices[i].id) {
             neighbors.push(vertices.find(x => x.id == edges[j].source));
         }
     }
@@ -122,6 +122,48 @@ function ColoringVertex() {
         }
         else {
             s.graph.nodes(`n${i}`).color = availableColors[0];
+        }
+    }
+}
+
+function GetNeighborEdges(i) {
+    var vertices = s.graph.nodes();
+    var edges = s.graph.edges();
+    var neighborEdges = [];
+
+    for (var j = 0, verticesLength = vertices.length; j < verticesLength; j++) {
+        if (edges[i].source == vertices[j].id || edges[i].target == vertices[j].id) {
+            for (var k = 0, edgesLength = edges.length; k < edgesLength; k++) {
+                if (edges[i].id != edges[k].id && (vertices[j].id == edges[k].source || vertices[j].id == edges[k].target)) {
+                    neighborEdges.push(edges[k]);
+                }
+            }
+        }
+    }
+
+    return neighborEdges;
+}
+
+function ColoringEdges() {
+    var edges = s.graph.edges();
+    var colors = ['#ff0000', '#ffbf00', '#ffff00', '#00ff00', '#009933', '#00ffff', '#0000ff', '#ff00ff', '#996633', '#000000', '#800000', '#800080', '#808000', '#C0C0C0', '#008080'];
+
+    for (var i = 0, edgesLength = edges.length; i < edgesLength; i++) {
+        var availableColors = colors.slice();
+        var neighborEdges = GetNeighborEdges(i);
+
+        if (neighborEdges.length > 0) {
+            for (var j = 0, neighborEdgesLength = neighborEdges.length; j < neighborEdgesLength; j++) {
+                for (var k = 0, colorsLength = colors.length; k < colorsLength; k++) {
+                    if (neighborEdges[j].color == availableColors[k]) {
+                        availableColors.splice(k, 1);
+                    }
+                }
+            }
+            s.graph.edges(`e${i}`).color = availableColors[0];
+        }
+        else {
+            s.graph.edges(`e${i}`).color = availableColors[0];
         }
     }
 }
@@ -188,6 +230,9 @@ $('.useAlgorithmButton').on('click', function () {
 
     if (chosenAlgorithm == 'vertex_coloring') {
         ColoringVertex();
+    }
+    else if (chosenAlgorithm == 'edges_coloring') {
+        ColoringEdges();
     }
     else if (chosenAlgorithm == 'generate_eulerian_graph') {
         GenerateEulerianGraph();

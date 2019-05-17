@@ -18,7 +18,7 @@
 }
 
 .grid-item-3 {
-    height: 18em;
+    height: 16em;
 }
 
 .inside-item-1 {
@@ -92,7 +92,7 @@
     }
     .grid-item-3 {
         grid-column: 2 / span 2;
-        height: 22em;
+        height: 23em;
     }
     .grid-item-1 img {
         height: 5em;
