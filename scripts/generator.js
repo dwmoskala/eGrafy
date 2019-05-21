@@ -15,6 +15,31 @@ s.settings({
     labelThreshold: 1
 });
 
+$('.generateGraphButton').on('click', function () {
+    GenerateGraph();
+})
+
+$('.useAlgorithmButton').on('click', function () {
+    var chosenAlgorithm = Array.from(document.getElementsByName("algorithm")).find(r => r.checked).value;
+
+    RegenerateGraph();
+
+    if (chosenAlgorithm == 'vertex_coloring') {
+        ColoringVertex();
+    }
+    else if (chosenAlgorithm == 'edges_coloring') {
+        ColoringEdges();
+    }
+    else if (chosenAlgorithm == 'eulerian_graph') {
+        GenerateEulerianGraph();
+    }
+
+    s.refresh();
+})
+
+ShowValuesFromSliders();
+GenerateGraph();
+
 function ShowValuesFromSliders() {
     verticesValue.innerHTML = verticesRange.value;
     edgesValue.innerHTML = edgesRange.value;
@@ -26,6 +51,14 @@ function ShowValuesFromSliders() {
     edgesRange.oninput = function () {
         edgesValue.innerHTML = this.value;
     }
+}
+
+function GenerateGraph() {
+    s.graph.clear();
+    GenerateVertices();
+    GenerateEdges();
+    ShowVertexDegree();
+    s.refresh();
 }
 
 function GenerateVertices() {
@@ -82,12 +115,10 @@ function ShowVertexDegree() {
     }
 }
 
-function GenerateGraph() {
+function RegenerateGraph() {
     s.graph.clear();
-    GenerateVertices();
-    GenerateEdges();
-    ShowVertexDegree();
-    s.refresh();
+    RegenerateVertices(graphVertices);
+    RegenerateEdges(graphEdges);
 }
 
 function RegenerateVertices(graphVertices) {
@@ -115,29 +146,6 @@ function RegenerateEdges(graphEdges) {
     }
 }
 
-function RegenerateGraph() {
-    s.graph.clear();
-    RegenerateVertices(graphVertices);
-    RegenerateEdges(graphEdges);
-}
-
-function GetNeighbors(i) {
-    var vertices = s.graph.nodes();
-    var edges = s.graph.edges();
-    var neighbors = [];
-
-    for (var j = 0, edgesLength = edges.length; j < edgesLength; j++) {
-        if (edges[j].source == vertices[i].id) {
-            neighbors.push(vertices.find(x => x.id == edges[j].target));
-        }
-        else if (edges[j].target == vertices[i].id) {
-            neighbors.push(vertices.find(x => x.id == edges[j].source));
-        }
-    }
-
-    return neighbors;
-}
-
 function ColoringVertex() {
     var vertices = s.graph.nodes();
     var colors = ['#ff0000', '#ffbf00', '#ffff00', '#00ff00', '#009933', '#00ffff', '#0000ff', '#ff00ff', '#996633', '#000000'];
@@ -163,22 +171,21 @@ function ColoringVertex() {
     }
 }
 
-function GetNeighborEdges(i) {
+function GetNeighbors(i) {
     var vertices = s.graph.nodes();
     var edges = s.graph.edges();
-    var neighborEdges = [];
+    var neighbors = [];
 
-    for (var j = 0, verticesLength = vertices.length; j < verticesLength; j++) {
-        if (edges[i].source == vertices[j].id || edges[i].target == vertices[j].id) {
-            for (var k = 0, edgesLength = edges.length; k < edgesLength; k++) {
-                if (edges[i].id != edges[k].id && (vertices[j].id == edges[k].source || vertices[j].id == edges[k].target)) {
-                    neighborEdges.push(edges[k]);
-                }
-            }
+    for (var j = 0, edgesLength = edges.length; j < edgesLength; j++) {
+        if (edges[j].source == vertices[i].id) {
+            neighbors.push(vertices.find(x => x.id == edges[j].target));
+        }
+        else if (edges[j].target == vertices[i].id) {
+            neighbors.push(vertices.find(x => x.id == edges[j].source));
         }
     }
 
-    return neighborEdges;
+    return neighbors;
 }
 
 function ColoringEdges() {
@@ -203,6 +210,49 @@ function ColoringEdges() {
         else {
             s.graph.edges(`e${i}`).color = availableColors[0];
         }
+    }
+}
+
+function GetNeighborEdges(i) {
+    var vertices = s.graph.nodes();
+    var edges = s.graph.edges();
+    var neighborEdges = [];
+
+    for (var j = 0, verticesLength = vertices.length; j < verticesLength; j++) {
+        if (edges[i].source == vertices[j].id || edges[i].target == vertices[j].id) {
+            for (var k = 0, edgesLength = edges.length; k < edgesLength; k++) {
+                if (edges[i].id != edges[k].id && (vertices[j].id == edges[k].source || vertices[j].id == edges[k].target)) {
+                    neighborEdges.push(edges[k]);
+                }
+            }
+        }
+    }
+
+    return neighborEdges;
+}
+
+function GenerateEulerianGraph() {
+    var vertices = s.graph.nodes();
+    var addEdge = true;
+    var edgeWasAdded = false;
+
+    for (var k = 0, iterations = 10; k < iterations; k++) {
+        if (edgeWasAdded) {
+            addEdge = true;
+            iterations++;
+        }
+        edgeWasAdded = false;
+
+        for (var i = 0, verticesLength = vertices.length; i < verticesLength; i++) {
+            var neighbors = GetNeighbors(i);
+            var id = `n${i}`;
+
+            if (neighbors.length % 2 != 0 || neighbors.length == 0) {
+                AddOrDeleteEdge(i, addEdge);
+            }
+            vertices[i].label = `V${i + 1} (${s.graph.degree(id)})`;
+        }
+        addEdge = false;
     }
 }
 
@@ -233,53 +283,3 @@ function AddOrDeleteEdge(i, addEdge) {
         }
     }
 }
-
-function GenerateEulerianGraph() {
-    var vertices = s.graph.nodes();
-    var addEdge = true;
-    var edgeWasAdded = false;
-
-    for (var k = 0, iterations = 10; k < iterations; k++) {
-        if (edgeWasAdded) {
-            addEdge = true;
-            iterations++;
-        }
-        edgeWasAdded = false;
-
-        for (var i = 0, verticesLength = vertices.length; i < verticesLength; i++) {
-            var neighbors = GetNeighbors(i);
-            var id = `n${i}`;
-
-            if (neighbors.length % 2 != 0 || neighbors.length == 0) {
-                AddOrDeleteEdge(i, addEdge);
-            }
-            vertices[i].label = `V${i + 1} (${s.graph.degree(id)})`;
-        }
-        addEdge = false;
-    }
-}
-
-$('.generateGraphButton').on('click', function () {
-    GenerateGraph();
-})
-
-$('.useAlgorithmButton').on('click', function () {
-    var chosenAlgorithm = Array.from(document.getElementsByName("algorithm")).find(r => r.checked).value;
-
-    RegenerateGraph();
-
-    if (chosenAlgorithm == 'vertex_coloring') {
-        ColoringVertex();
-    }
-    else if (chosenAlgorithm == 'edges_coloring') {
-        ColoringEdges();
-    }
-    else if (chosenAlgorithm == 'eulerian_graph') {
-        GenerateEulerianGraph();
-    }
-
-    s.refresh();
-})
-
-ShowValuesFromSliders();
-GenerateGraph();
