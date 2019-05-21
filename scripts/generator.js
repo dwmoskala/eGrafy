@@ -98,8 +98,8 @@ function RegenerateVertices(graphVertices) {
                 label: graphVertices[i].label,
                 x: graphVertices[i].x,
                 y: graphVertices[i].y,
-                size: 1,
-                color: '#0000fa'
+                size: graphVertices[i].size,
+                color: graphVertices[i].color
             });
     }
 }
@@ -110,7 +110,7 @@ function RegenerateEdges(graphEdges) {
             id: graphEdges[i].id,
             source: graphEdges[i].source,
             target: graphEdges[i].target,
-            color: '#c8c8ff'
+            color: graphEdges[i].color
         });
     }
 }
@@ -251,7 +251,7 @@ function GenerateEulerianGraph() {
             var id = `n${i}`;
 
             if (neighbors.length % 2 != 0 || neighbors.length == 0) {
-                AddOrDeleteEdge(i, addEdge, edgeWasAdded);
+                AddOrDeleteEdge(i, addEdge);
             }
             vertices[i].label = `V${i + 1} (${s.graph.degree(id)})`;
         }
